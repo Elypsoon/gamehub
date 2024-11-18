@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:game_hub/screens/games/flappy_bird/init_Flappy.dart';
 import 'package:get/get.dart';
 import 'package:zhi_starry_sky/starry_sky.dart';
 
@@ -9,10 +10,7 @@ class GamesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     // Lista de juegos
     final games = [
-      {'name': 'Flappy bird', 'image': 'assets/images/cielo.jpg'},
-      {'name': 'Snake', 'image': 'assets/images/cielo.jpg'},
-      {'name': 'Snake', 'image': 'assets/images/cielo.jpg'},
-      {'name': 'Snake', 'image': 'assets/images/cielo.jpg'},
+      {'name': 'Flappy bird', 'image': 'assets/images/cielo.jpg', 'init': () => const InitFlappyBird()},
     ];
 
     return Scaffold(
@@ -75,6 +73,8 @@ class GamesPage extends StatelessWidget {
                               backgroundColor: Colors.black87,
                               colorText: Colors.white,
                             );
+
+                            Get.to(game['init']);
                           },
                           child: Padding(
                             padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
@@ -85,7 +85,7 @@ class GamesPage extends StatelessWidget {
                                 ClipRRect(
                                   borderRadius: BorderRadius.circular(16),
                                   child: Image.asset(
-                                    game['image']!,
+                                    game['image'].toString(),
                                     width: double.infinity, // Ocupa todo el ancho disponible
                                     height: 200,
                                     fit: BoxFit.cover,
@@ -94,7 +94,7 @@ class GamesPage extends StatelessWidget {
                                 const SizedBox(height: 8),
                                 // Nombre del juego
                                 Text(
-                                  game['name']!,
+                                  game['name'].toString(),
                                   style: const TextStyle(
                                     fontSize: 20,
                                     fontWeight: FontWeight.bold,

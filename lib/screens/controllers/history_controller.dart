@@ -27,4 +27,10 @@ class HistoryController extends GetxController {
     await dbHelper.clearHistory();
     fetchGameHistory(); // Recargar datos después de limpiar
   }
+
+  Future<void> addGameToHistory({required String name, required int score, required DateTime date}) async{
+    final dbHelper = DBHelper.instance;
+    await dbHelper.insertGame(GameHistory(name: name, score: score, date: date));
+    fetchGameHistory(); // Recargar datos después de añadir
+  }
 }

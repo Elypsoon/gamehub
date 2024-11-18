@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:game_hub/screens/controllers/db_manage.dart';
+import 'package:game_hub/screens/controllers/history_controller.dart';
 import 'package:game_hub/screens/history_screen.dart';
 import 'package:get/get.dart';
 
@@ -11,6 +12,8 @@ import 'package:game_hub/screens/home_screen.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await DBHelper.instance.database;
+
+  Get.put(HistoryController());
 
   runApp(const MyApp());
 }

@@ -3,10 +3,12 @@ import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
+import 'package:game_hub/screens/controllers/history_controller.dart';
 import 'package:game_hub/screens/games/flappy_bird/game/assets.dart';
 import 'package:game_hub/screens/games/flappy_bird/game/bird_movement.dart';
 import 'package:game_hub/screens/games/flappy_bird/game/configuration.dart';
 import 'package:game_hub/screens/games/flappy_bird/game/flappy_bird_game.dart';
+import 'package:get/get.dart';
 
 // Clase que representa al pájaro del juego
 class Bird extends SpriteGroupComponent<BirdMovement>
@@ -85,9 +87,18 @@ class Bird extends SpriteGroupComponent<BirdMovement>
   }
 
   void gameOver() {
-    FlameAudio.play(Assets.collision);
-    game.isHit = true;
-    gameRef.overlays.add('gameOver');
-    gameRef.pauseEngine();
-  }
+  FlameAudio.play(Assets.collision);
+  game.isHit = true;
+
+  // Guardar en la base de datos
+  final controller = Get.find<HistoryController>();
+  controller.addGameToHistory(
+    name: 'Flappy Bird',
+    score: score,
+    date: DateTime.now(),
+  );
+
+  gameRef.overlays.add('gameOver');
+  gameRef.pauseEngine();
+}
 }

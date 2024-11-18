@@ -45,7 +45,8 @@ class HistoryPage extends StatelessWidget {
                                   '¿Estás seguro de que deseas borrar todo el historial?'),
                               actions: [
                                 TextButton(
-                                  onPressed: () => Navigator.pop(context, false),
+                                  onPressed: () =>
+                                      Navigator.pop(context, false),
                                   child: const Text('Cancelar'),
                                 ),
                                 TextButton(
@@ -68,9 +69,15 @@ class HistoryPage extends StatelessWidget {
                   child: Obx(() {
                     if (controller.gameHistory.isEmpty) {
                       return const Center(
-                        child: Text(
-                          'No hay juegos en el historial',
-                          style: TextStyle(fontSize: 18, color: Colors.grey),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'No hay nada que mostrar. ¡Comienza a jugar!',
+                              style: TextStyle(fontSize: 18, color: Colors.white),
+                            ),
+                            Icon(Icons.all_inclusive, size: 48, color: Colors.white),
+                          ],
                         ),
                       );
                     }
@@ -81,51 +88,91 @@ class HistoryPage extends StatelessWidget {
                           // Encabezado de la tabla
                           Container(
                             padding: const EdgeInsets.all(8),
-                            color: Colors.grey[200]?.withOpacity(0.5),
+                            color: Colors.lightBlueAccent.withOpacity(0.5),
                             child: const Row(
                               children: [
                                 Expanded(
-                                    child: Text('Juego (ID)',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold))),
+                                  child: Text(
+                                    'Juego',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
                                 Expanded(
-                                    child: Text('Nombre',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold))),
+                                  child: Text(
+                                    'Nombre',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
                                 Expanded(
-                                    child: Text('Puntuación',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold))),
+                                  child: Text(
+                                    'Puntuación',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
                                 Expanded(
-                                    child: Text('Fecha',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold))),
-                                SizedBox(width: 40), // Espacio para botón
+                                  child: Text(
+                                    'Fecha',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
                               ],
                             ),
                           ),
                           // Filas de la tabla
                           ...controller.gameHistory.map((game) {
                             return Container(
-                              padding: const EdgeInsets.all(8),
+                              padding: const EdgeInsets.symmetric(vertical: 8),
                               decoration: BoxDecoration(
                                 border: Border(
                                   bottom: BorderSide(
-                                      color: Colors.grey[300]!.withOpacity(0.5)),
+                                      color: Colors.lightBlueAccent
+                                          .withOpacity(0.5)),
                                 ),
                               ),
                               child: Row(
                                 children: [
-                                  Expanded(child: Text('${game.id}')),
-                                  Expanded(child: Text(game.name)),
-                                  Expanded(child: Text('${game.score}')),
                                   Expanded(
-                                      child: Text(
-                                          game.date.toLocal().toString().split(' ')[0])),
-                                  IconButton(
-                                    icon: const Icon(Icons.delete,
-                                        color: Colors.red),
-                                    onPressed: () => controller.deleteGame(game.id!),
+                                    child: Text(
+                                      '${game.id}',
+                                      textAlign: TextAlign.center,
+                                      style: const TextStyle(color: Colors.white),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Text(
+                                      game.name,
+                                      textAlign: TextAlign.center,
+                                      style: const TextStyle(color: Colors.white),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Text(
+                                      '${game.score}',
+                                      textAlign: TextAlign.center,
+                                      style: const TextStyle(color: Colors.white),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Text(
+                                      game.date
+                                          .toLocal()
+                                          .toString()
+                                          .split(' ')[0],
+                                      textAlign: TextAlign.center,
+                                      style: const TextStyle(color: Colors.white),
+                                    ),
                                   ),
                                 ],
                               ),

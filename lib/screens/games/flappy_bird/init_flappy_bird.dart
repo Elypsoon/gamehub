@@ -10,15 +10,15 @@ class InitFlappyBird extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final game = FlappyBirdGame();  // Instancia del juego
+    final game = FlappyBirdGame(); // Instancia del juego
 
     return Scaffold(
       body: GameWidget(
         game: game,
         initialActiveOverlays: const [MainMenuScreen.id],
         overlayBuilderMap: {
-        'mainMenu': (context, _) => MainMenuScreen(game: game),
-        'gameOver': (context, _) => GameOverScreen(game: game),
+          'mainMenu': (context, _) => MainMenuScreen(game: game),
+          'gameOver': (context, _) => GameOverScreen(game: game),
         },
       ),
     );

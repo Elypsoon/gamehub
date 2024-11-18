@@ -13,6 +13,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await DBHelper.instance.database;
 
+  //Controladores que deben ser inicializados al inicio
   Get.put(HistoryController());
 
   runApp(const MyApp());

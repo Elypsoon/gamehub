@@ -33,7 +33,8 @@ class HistoryPage extends StatelessWidget {
                   ),
                   actions: [
                     IconButton(
-                      icon: const Icon(Icons.delete_forever, color: Colors.white),
+                      icon:
+                          const Icon(Icons.delete_forever, color: Colors.white),
                       onPressed: () async {
                         // Confirmación antes de limpiar el historial
                         final result = await showDialog<bool>(
@@ -74,9 +75,11 @@ class HistoryPage extends StatelessWidget {
                           children: [
                             Text(
                               'No hay nada que mostrar. ¡Comienza a jugar!',
-                              style: TextStyle(fontSize: 18, color: Colors.white),
+                              style:
+                                  TextStyle(fontSize: 20, color: Colors.white),
                             ),
-                            Icon(Icons.all_inclusive, size: 48, color: Colors.white),
+                            Icon(Icons.all_inclusive,
+                                size: 48, color: Colors.white),
                           ],
                         ),
                       );
@@ -95,6 +98,7 @@ class HistoryPage extends StatelessWidget {
                                   child: Text(
                                     'Juego',
                                     style: TextStyle(
+                                        fontSize: 16,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.white),
                                     textAlign: TextAlign.center,
@@ -104,6 +108,7 @@ class HistoryPage extends StatelessWidget {
                                   child: Text(
                                     'Nombre',
                                     style: TextStyle(
+                                        fontSize: 16,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.white),
                                     textAlign: TextAlign.center,
@@ -113,6 +118,7 @@ class HistoryPage extends StatelessWidget {
                                   child: Text(
                                     'Puntuación',
                                     style: TextStyle(
+                                        fontSize: 16,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.white),
                                     textAlign: TextAlign.center,
@@ -122,6 +128,7 @@ class HistoryPage extends StatelessWidget {
                                   child: Text(
                                     'Fecha',
                                     style: TextStyle(
+                                        fontSize: 16,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.white),
                                     textAlign: TextAlign.center,
@@ -147,21 +154,22 @@ class HistoryPage extends StatelessWidget {
                                     child: Text(
                                       '${game.id}',
                                       textAlign: TextAlign.center,
-                                      style: const TextStyle(color: Colors.white),
+                                      style: const TextStyle(
+                                          color: Colors.white, fontSize: 16),
                                     ),
                                   ),
                                   Expanded(
-                                    child: Text(
-                                      game.name,
-                                      textAlign: TextAlign.center,
-                                      style: const TextStyle(color: Colors.white),
-                                    ),
+                                    child: Text(game.name,
+                                        textAlign: TextAlign.center,
+                                        style: const TextStyle(
+                                            color: Colors.white, fontSize: 16)),
                                   ),
                                   Expanded(
                                     child: Text(
                                       '${game.score}',
                                       textAlign: TextAlign.center,
-                                      style: const TextStyle(color: Colors.white),
+                                      style: const TextStyle(
+                                          color: Colors.white, fontSize: 16),
                                     ),
                                   ),
                                   Expanded(
@@ -171,7 +179,8 @@ class HistoryPage extends StatelessWidget {
                                           .toString()
                                           .split(' ')[0],
                                       textAlign: TextAlign.center,
-                                      style: const TextStyle(color: Colors.white),
+                                      style: const TextStyle(
+                                          color: Colors.white, fontSize: 16),
                                     ),
                                   ),
                                 ],

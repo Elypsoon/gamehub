@@ -10,7 +10,7 @@ class MenuPage extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          // Fondo de la pantalla (imagen)
+          // Fondo de la pantalla
           const Positioned.fill(
             child: Center(
               child: StarrySkyView(),

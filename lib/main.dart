@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:game_hub/screens/controllers/db_manage.dart';
+import 'package:game_hub/screens/history_screen.dart';
 import 'package:get/get.dart';
 
 //Pantallas
@@ -6,7 +8,10 @@ import 'package:game_hub/screens/games_screen.dart';
 import 'package:game_hub/screens/home_screen.dart';
 
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await DBHelper.instance.database;
+
   runApp(const MyApp());
 }
 
@@ -24,8 +29,9 @@ class MyApp extends StatelessWidget {
 
       //Esto es para las rutas
       getPages: [
-        GetPage(name: '/', page: () => const MenuPage(),),
+        GetPage(name: '/', page: () => const MenuPage()),
         GetPage(name: '/games',page: () => const GamesPage()),
+        GetPage(name: '/history', page: () => const HistoryPage()),
       ],
     );
   }

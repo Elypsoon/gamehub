@@ -43,6 +43,7 @@ dependencies:
   starsview: ^0.0.2
   flame: ^1.21.0
   flame_audio: ^2.10.5
+  path: ^1.9.0
 
 dev_dependencies:
   flutter_test:

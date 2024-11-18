@@ -68,12 +68,12 @@ class GamesPage extends StatelessWidget {
                             // Lógica para iniciar el juego
                             Get.snackbar(
                               'Juego seleccionado',
-                              '${game['name']} se está iniciando...',
+                              '${game['name']} iniciado',
                               snackPosition: SnackPosition.BOTTOM,
                               backgroundColor: Colors.black87,
                               colorText: Colors.white,
                             );
-
+                            //Pasar a la pantalla de juego
                             Get.to(game['init']);
                           },
                           child: Padding(

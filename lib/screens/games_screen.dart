@@ -1,0 +1,127 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:zhi_starry_sky/starry_sky.dart';
+
+class GamesPage extends StatelessWidget {
+  const GamesPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    // Lista de juegos
+    final games = [
+      {'name': 'Flappy bird', 'image': 'assets/images/cielo.jpg'},
+      {'name': 'Snake', 'image': 'assets/images/cielo.jpg'},
+      {'name': 'Snake', 'image': 'assets/images/cielo.jpg'},
+      {'name': 'Snake', 'image': 'assets/images/cielo.jpg'},
+    ];
+
+    return Scaffold(
+      body: Stack(
+        children: [
+          // Fondo animado
+          const Positioned.fill(
+            child: Center(
+              child: StarrySkyView(),
+            ),
+          ),
+          // Contenido principal
+          SafeArea(
+            child: Column(
+              children: [
+                // Botón de regreso y título
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      // Botón de regreso
+                      IconButton(
+                        icon: const Icon(Icons.arrow_back, color: Colors.white),
+                        onPressed: () {
+                          Get.back();
+                        },
+                      ),
+                      const Text(
+                        'Selecciona un juego',
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                          shadows: [
+                            Shadow(
+                              color: Colors.black54,
+                              offset: Offset(2, 2),
+                              blurRadius: 5,
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(width: 48), // Espaciado para centrar el título
+                    ],
+                  ),
+                ),
+                // Lista de juegos
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: games.map((game) {
+                        return GestureDetector(
+                          onTap: () {
+                            // Lógica para iniciar el juego
+                            Get.snackbar(
+                              'Juego seleccionado',
+                              '${game['name']} se está iniciando...',
+                              snackPosition: SnackPosition.BOTTOM,
+                              backgroundColor: Colors.black87,
+                              colorText: Colors.white,
+                            );
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                // Imagen del juego
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(16),
+                                  child: Image.asset(
+                                    game['image']!,
+                                    width: double.infinity, // Ocupa todo el ancho disponible
+                                    height: 200,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                                const SizedBox(height: 8),
+                                // Nombre del juego
+                                Text(
+                                  game['name']!,
+                                  style: const TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                    shadows: [
+                                      Shadow(
+                                        color: Colors.black54,
+                                        offset: Offset(1, 1),
+                                        blurRadius: 3,
+                                      ),
+                                    ],
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

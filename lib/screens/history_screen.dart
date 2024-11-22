@@ -43,7 +43,7 @@ class HistoryPage extends StatelessWidget {
                             return AlertDialog(
                               title: const Text('¿Borrar todo?'),
                               content: const Text(
-                                  '¿Estás seguro de que deseas borrar todo el historial?'),
+                                  '¿Estás seguro de que deseas borrar todo el historial? ¡Esto también borrará los logros!'),
                               actions: [
                                 TextButton(
                                   onPressed: () =>
@@ -65,10 +65,13 @@ class HistoryPage extends StatelessWidget {
                     ),
                   ],
                 ),
+
                 // Contenido del historial
                 Expanded(
                   child: Obx(() {
-                    if (controller.gameHistory.isEmpty) {
+                    final filteredHistory = controller.filteredGameHistory;
+
+                    if (filteredHistory.isEmpty) {
                       return const Center(
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -88,6 +91,60 @@ class HistoryPage extends StatelessWidget {
                     return SingleChildScrollView(
                       child: Column(
                         children: [
+                          // Filtros y Ordenamientos
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                // Filtro por juego
+                                Expanded(
+                                  child: DropdownButton<String>(
+                                    value: controller.selectedGame.value,
+                                    dropdownColor: Colors.black,
+                                    style: const TextStyle(color: Colors.white),
+                                    items: <String>[
+                                      'Todos los juegos',
+                                      'Flappy Bird',
+                                    ].map((String value) {
+                                      return DropdownMenuItem<String>(
+                                        value: value,
+                                        child: Text(value),
+                                      );
+                                    }).toList(),
+                                    onChanged: (value) {
+                                      if (value != null) {
+                                        controller.updateFilter(value);
+                                      }
+                                    },
+                                  ),
+                                ),
+                                const SizedBox(width: 16),
+                                // Ordenamiento
+                                Expanded(
+                                  child: DropdownButton<String>(
+                                    value: controller.selectedOrder.value,
+                                    dropdownColor: Colors.black,
+                                    style: const TextStyle(color: Colors.white),
+                                    items: <String>[
+                                      'Recientes',
+                                      'Mayor puntaje',
+                                    ].map((String value) {
+                                      return DropdownMenuItem<String>(
+                                        value: value,
+                                        child: Text(value),
+                                      );
+                                    }).toList(),
+                                    onChanged: (value) {
+                                      if (value != null) {
+                                        controller.updateOrder(value);
+                                      }
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                           // Encabezado de la tabla
                           Container(
                             padding: const EdgeInsets.all(8),
@@ -138,7 +195,7 @@ class HistoryPage extends StatelessWidget {
                             ),
                           ),
                           // Filas de la tabla
-                          ...controller.gameHistory.map((game) {
+                          ...filteredHistory.map((game) {
                             return Container(
                               padding: const EdgeInsets.symmetric(vertical: 8),
                               decoration: BoxDecoration(

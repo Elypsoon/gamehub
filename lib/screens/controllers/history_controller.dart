@@ -2,30 +2,56 @@ import 'package:game_hub/screens/controllers/db_manage.dart';
 import 'package:get/get.dart';
 
 class HistoryController extends GetxController {
-  var gameHistory = <GameHistory>[].obs; // Lista observable
+  var gameHistory = <GameHistory>[].obs;
+  var filteredGameHistory = <GameHistory>[].obs;
+  var selectedGame = 'Todos los juegos'.obs;
+  var selectedOrder = 'Recientes'.obs;
 
   @override
   void onInit() {
     super.onInit();
-    fetchGameHistory(); // Cargar datos al iniciar
+    fetchGameHistory();
   }
 
   Future<void> fetchGameHistory() async {
-    final dbHelper = DBHelper.instance;
-    final fetchedHistory = await dbHelper.getAllGames();
-    gameHistory.assignAll(fetchedHistory); // Actualiza la lista observable
+    final data = await DBHelper.instance.getAllGames();
+    gameHistory.assignAll(data);
+    applyFilters();
   }
 
-  Future<void> deleteGame(int id) async {
-    final dbHelper = DBHelper.instance;
-    await dbHelper.deleteGame(id);
-    fetchGameHistory(); // Recargar datos después de borrar
+  void updateFilter(String game) {
+    selectedGame.value = game;
+    applyFilters();
+  }
+
+  void updateOrder(String order) {
+    selectedOrder.value = order;
+    applyFilters();
+  }
+
+  void applyFilters() {
+    List<GameHistory> tempHistory = gameHistory;
+
+    // Filtrar por juego
+    if (selectedGame.value != 'Todos los juegos') {
+      tempHistory = tempHistory
+          .where((game) => game.name == selectedGame.value)
+          .toList();
+    }
+
+    // Ordenar
+    if (selectedOrder.value == 'Mayor puntaje') {
+      tempHistory.sort((a, b) => b.score.compareTo(a.score));
+    } else {
+      tempHistory.sort((a, b) => a.id!.compareTo(b.id as num));
+    }
+
+    filteredGameHistory.assignAll(tempHistory);
   }
 
   Future<void> clearHistory() async {
-    final dbHelper = DBHelper.instance;
-    await dbHelper.clearHistory();
-    fetchGameHistory(); // Recargar datos después de limpiar
+    await DBHelper.instance.clearHistory();
+    fetchGameHistory();
   }
 
   Future<void> addGameToHistory({required String name, required int score, required DateTime date}) async{

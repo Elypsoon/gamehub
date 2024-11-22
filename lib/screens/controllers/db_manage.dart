@@ -106,7 +106,15 @@ class DBHelper {
 
   // Método para eliminar todos los registros (opcional)
   Future<int> clearHistory() async {
-    final db = await database;
-    return db.delete(_tableName);
-  }
+  final db = await database;
+
+  // Borrar todos los registros
+  final deleteCount = await db.delete(_tableName);
+
+  // Reiniciar el contador de ID
+  await db.rawDelete("DELETE FROM sqlite_sequence WHERE name = '$_tableName'");
+
+  return deleteCount;
+}
+
 }

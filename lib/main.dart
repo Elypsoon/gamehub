@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:game_hub/screens/achievements_screen.dart';
 import 'package:game_hub/screens/controllers/db_manage.dart';
 import 'package:game_hub/screens/controllers/history_controller.dart';
 import 'package:game_hub/screens/history_screen.dart';
@@ -36,6 +37,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/', page: () => const MenuPage()),
         GetPage(name: '/games',page: () => const GamesPage()),
         GetPage(name: '/history', page: () => const HistoryPage()),
+        GetPage(name: '/achievements', page: () => const AchievementsPage()),
       ],
     );
   }

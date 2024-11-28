@@ -3,6 +3,7 @@ import 'package:flame/events.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:game_hub/screens/controllers/history_controller.dart';
 import 'package:game_hub/screens/games/tetris/core/enums/game_state.dart';
 import 'package:game_hub/screens/games/tetris/core/utils/constants.dart';
 import 'package:game_hub/screens/games/tetris/game/components/briks.dart';
@@ -13,6 +14,7 @@ import 'package:game_hub/screens/games/tetris/game/overlays/countdown_overlay.da
 import 'package:game_hub/screens/games/tetris/game/overlays/play_again_overlay.dart';
 import 'package:game_hub/screens/games/tetris/game/overlays/start_game_overlay.dart';
 import 'package:game_hub/screens/games/tetris/game/providers/game_provider.dart';
+import 'package:get/get.dart';
 
 class TetrisGame extends FlameGame with KeyboardEvents, TapCallbacks {
   final Size screenSize;
@@ -204,6 +206,7 @@ class TetrisGame extends FlameGame with KeyboardEvents, TapCallbacks {
   }
 
   void resetGame() {
+    saveScore();
     if (!gameProvider.startGame) {
       return;
     }
@@ -212,7 +215,7 @@ class TetrisGame extends FlameGame with KeyboardEvents, TapCallbacks {
         gameStates == GameStates.paused) {
       return;
     }
-
+    // Reiniciar el tablero
     playland.reset();
   }
 
@@ -275,5 +278,14 @@ class TetrisGame extends FlameGame with KeyboardEvents, TapCallbacks {
       return;
     }
     playland.drop();
+  }
+
+  void saveScore() {
+    final controller = Get.find<HistoryController>();
+    controller.addGameToHistory(
+      name: 'Tetris',
+      score: gameProvider.points, // Usa los puntos actuales
+      date: DateTime.now(),
+    );
   }
 }

@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:game_hub/screens/games/tetris/game/tetris_game.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 
@@ -16,32 +17,59 @@ class PlayAgainOverlay extends StatelessWidget {
     return BackdropFilter(
       filter: ImageFilter.blur(sigmaX: 2, sigmaY: 2),
       child: Center(
-        child: InkWell(
-          onTap: () {
-            game.startCountDown(
-              key: keyOverlay,
-            );
-          },
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Icon(
-                Icons.play_arrow,
-                size: 100,
-                color: Colors.black,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            InkWell(
+              onTap: () {
+                game.startCountDown(
+                  key: keyOverlay,
+                );
+              },
+              child: Column(
+                children: [
+                  const Icon(
+                    Icons.play_arrow,
+                    size: 100,
+                    color: Colors.black,
+                  ),
+                  Text(
+                    "Play Again",
+                    style: GoogleFonts.getFont(
+                      'Chakra Petch',
+                      textStyle: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 30,
+                      ),
+                    ),
+                  ),
+                ],
               ),
-              Text(
-                "Play Again",
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                Get.toNamed('/games'); // Salir o regresar al menú
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.transparent, // Color del botón
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 30,
+                  vertical: 15,
+                ),
+              ),
+              child: Text(
+                "Exit",
                 style: GoogleFonts.getFont(
                   'Chakra Petch',
                   textStyle: const TextStyle(
                     color: Colors.black,
-                    fontSize: 30,
+                    fontSize: 20,
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

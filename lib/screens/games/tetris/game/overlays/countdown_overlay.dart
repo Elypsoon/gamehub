@@ -25,6 +25,7 @@ class _CountdownOverlayState extends State<CountdownOverlay> {
       (timer) {
         if (timer.tick == 3) {
           timer.cancel();
+          
           widget.game.endCountDown();
         } else {
           setState(() {
@@ -56,4 +57,5 @@ class _CountdownOverlayState extends State<CountdownOverlay> {
       ),
     );
   }
+  
 }

@@ -76,7 +76,6 @@ class AudioManager {
 
   void rotateSound() {
     if (_playSound) {
-      print(_playSound);
       PlayAudio.instance.playSfx('rotate.mp3');
     }
   }

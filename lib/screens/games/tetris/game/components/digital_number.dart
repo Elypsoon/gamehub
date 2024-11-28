@@ -7,12 +7,12 @@ class DigitalNumber extends StatelessWidget {
   final Color color;
 
   const DigitalNumber({
-    Key? key,
+    super.key,
     required this.value,
     required this.height,
     required this.color,
     this.padLeft = 0,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

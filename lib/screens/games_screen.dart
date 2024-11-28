@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:game_hub/screens/games/dino_run/init.dart';
 import 'package:game_hub/screens/games/flappy_bird/init_flappy_bird.dart';
-import 'package:game_hub/screens/games/tetris/main.dart';
+import 'package:game_hub/screens/games/snake/init_snake.dart';
+import 'package:game_hub/screens/games/tetris/init_tetris.dart';
 import 'package:get/get.dart';
 import 'package:zhi_starry_sky/starry_sky.dart';
 
@@ -15,6 +16,7 @@ class GamesPage extends StatelessWidget {
       {'name': 'Flappy Bird', 'image': 'assets/images/flappyBird.png', 'init': () => const InitFlappyBird()},
       {'name': 'Dino Run', 'image': 'assets/images/cielo.jpg', 'init': () => const InitDinoRun()},
       {'name': 'Tetris', 'image': 'assets/images/cielo.jpg', 'init': () => const InitTetris()},
+      {'name': 'Snake', 'image': 'assets/images/cielo.jpg', 'init': () => InitSnake()},
     ];
 
     return Scaffold(

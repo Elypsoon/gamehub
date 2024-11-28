@@ -4,6 +4,7 @@ import 'package:flame/input.dart';
 import 'package:flame_bloc/flame_bloc.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:game_hub/screens/controllers/history_controller.dart';
 import 'package:game_hub/screens/games/snake/blocs/game_flow_bloc.dart';
 import 'package:game_hub/screens/games/snake/blocs/score_bloc.dart';
 import 'package:game_hub/screens/games/snake/blocs/snake_bloc.dart';
@@ -11,6 +12,7 @@ import 'package:game_hub/screens/games/snake/components/ground/ground.dart';
 import 'package:game_hub/screens/games/snake/game_config.dart';
 import 'package:game_hub/screens/games/snake/init_snake.dart';
 import 'package:game_hub/screens/games/snake/utils/direction_util.dart';
+import 'package:get/get.dart';
 
 class SnakeGame extends FlameGame
     with KeyboardEvents, HasCollisionDetection, DragCallbacks {
@@ -102,8 +104,22 @@ class SnakeGame extends FlameGame
   }
 
   void gameOver() {
+    // Obtener el puntaje actual
+    final currentScore = scoreBloc.state;
+
+    // Guardar el puntaje en la base de datos
+    final controller = Get.find<HistoryController>();
+    controller.addGameToHistory(
+      name: 'Snake',
+      score: currentScore,
+      date: DateTime.now(),
+    );
+
+    // Cambiar estado del juego
     gameFlowBloc.add(LoseEvent());
     overlays.add(InitSnake.gameOverOverlay);
+
+    // Reiniciar el estado de la serpiente
     snakeBloc.add(ResetSnakeEvent());
   }
 

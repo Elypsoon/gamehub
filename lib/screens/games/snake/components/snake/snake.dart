@@ -7,7 +7,6 @@ import 'package:game_hub/screens/games/snake/blocs/snake_bloc.dart';
 import 'package:game_hub/screens/games/snake/components/snake/snake_body_part.dart';
 import 'package:game_hub/screens/games/snake/components/snake/snake_head.dart';
 import 'package:game_hub/screens/games/snake/game_config.dart';
-import 'package:game_hub/screens/games/snake/init_snake.dart';
 import 'package:game_hub/screens/games/snake/snake_game.dart';
 import 'package:game_hub/screens/games/snake/utils/direction_util.dart';
 import 'package:game_hub/screens/games/snake/utils/snake_effect.dart';
@@ -24,7 +23,7 @@ class Snake extends PositionComponent
   final List<Vector2> moveHeadHistory = [];
 
   @override
-  onLoad() async {
+  Future<void> onLoad() async {
     super.onLoad();
     bodyParts
       ..clear()
@@ -60,7 +59,7 @@ class Snake extends PositionComponent
 
   @override
   void update(double dt) {
-    if (!hasStarted && gameFlowBloc.state == GameState.playing) {
+    if (!hasStarted && gameRef.gameFlowBloc.state == GameState.playing) {
       hasStarted = true;
       moveHeadHistory.add(DirectionUtil.directionToVector(Direction.right));
       final effect = SnakeEffect.createHeadEffect(
@@ -97,7 +96,7 @@ class Snake extends PositionComponent
   }
 
   void whenEatFood() {
-    scoreBloc.add(IncrementScore());
+    gameRef.scoreBloc.add(IncrementScore()); // Usar gameRef para acceder a scoreBloc
     final newBodyPart = SnakeBodyPart(hasHitbox: true)
       ..position = bodyParts.last.position -
           DirectionUtil.directionToVector(lastBodyPartDirection);

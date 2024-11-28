@@ -3,6 +3,8 @@ import 'package:game_hub/screens/achievements_screen.dart';
 import 'package:game_hub/screens/controllers/db_manage.dart';
 import 'package:game_hub/screens/controllers/history_controller.dart';
 import 'package:game_hub/screens/games/dino_run/init.dart';
+import 'package:game_hub/screens/games/snake/blocs/game_flow_bloc.dart';
+import 'package:game_hub/screens/games/snake/blocs/score_bloc.dart';
 import 'package:game_hub/screens/history_screen.dart';
 import 'package:get/get.dart';
 
@@ -18,6 +20,8 @@ Future<void> main() async {
 
   //Controladores que deben ser inicializados al inicio
   Get.put(HistoryController());
+  Get.put(ScoreBloc());
+  Get.put(GameFlowBloc());
 
   runApp(const MyApp());
   

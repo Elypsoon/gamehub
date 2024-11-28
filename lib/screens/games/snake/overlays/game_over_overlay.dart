@@ -1,5 +1,8 @@
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
+import 'package:game_hub/screens/games/snake/blocs/game_flow_bloc.dart';
+import 'package:game_hub/screens/games/snake/blocs/score_bloc.dart';
+import 'package:game_hub/screens/games/snake/blocs/snake_bloc.dart';
 import 'package:game_hub/screens/games/snake/snake_game.dart';
 import 'package:get/get.dart';
 
@@ -57,7 +60,8 @@ class GameOverOverlay extends StatelessWidget {
                       const SizedBox(height: 10),
                       ElevatedButton(
                         onPressed: () {
-                          Get.back();
+                          // Regresa al menú y asegura que el juego se reconstruya
+                          Get.offAllNamed('/games');
                         },
                         style: ButtonStyle(
                           minimumSize: WidgetStateProperty.all(

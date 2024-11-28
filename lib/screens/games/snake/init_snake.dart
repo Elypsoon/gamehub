@@ -8,15 +8,18 @@ import 'package:game_hub/screens/games/snake/overlays/instructions_overlay.dart'
 import 'package:game_hub/screens/games/snake/overlays/score_overlay.dart';
 import 'package:game_hub/screens/games/snake/snake_game.dart';
 
-final ScoreBloc scoreBloc = ScoreBloc();
-final GameFlowBloc gameFlowBloc = GameFlowBloc();
-
 class InitSnake extends StatelessWidget {
-  InitSnake({
-    super.key,
-  });
+  InitSnake({super.key});
 
-  final Game game = SnakeGame(scoreBloc: scoreBloc, gameFlowBloc: gameFlowBloc);
+  // Crear nuevas instancias de los blocs aquí
+  final ScoreBloc scoreBloc = ScoreBloc();
+  final GameFlowBloc gameFlowBloc = GameFlowBloc();
+
+  // Pasar los blocs al juego
+  late final Game game = SnakeGame(
+    scoreBloc: scoreBloc,
+    gameFlowBloc: gameFlowBloc,
+  );
 
   static const instructionsOverlay = 'instructionsOverlay';
   static const scoreOverlay = 'scoreOverlay';
@@ -33,6 +36,9 @@ class InitSnake extends StatelessWidget {
         providers: [
           BlocProvider<ScoreBloc>(
             create: (BuildContext context) => scoreBloc,
+          ),
+          BlocProvider<GameFlowBloc>(
+            create: (BuildContext context) => gameFlowBloc,
           ),
         ],
         child: GameWidget(

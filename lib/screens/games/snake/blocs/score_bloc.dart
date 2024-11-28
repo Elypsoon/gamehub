@@ -9,10 +9,15 @@ class ResetScore extends ScoreEvent {}
 class ScoreBloc extends Bloc<ScoreEvent, int> {
   ScoreBloc() : super(0) {
     on<IncrementScore>(
-      (event, emit) => emit(state + 1),
+      (event, emit) {
+        final newScore = state + 1;
+        emit(newScore);
+      },
     );
     on<ResetScore>(
-      (event, emit) => emit(0),
+      (event, emit) {
+        emit(0);
+      },
     );
   }
 }

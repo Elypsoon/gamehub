@@ -90,6 +90,10 @@ flutter:
     - family: Game     
       fonts:
         - asset: assets/fonts/Game.ttf
+
+    - family: Noto Color Emoji
+      fonts:
+        - asset: assets/fonts/NotoColorEmoji-Regular.ttf
   # fonts:
   #   - family: Schyler
   #     fonts:

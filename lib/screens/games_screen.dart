@@ -10,7 +10,7 @@ class GamesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     // Lista de juegos
     final games = [
-      {'name': 'Flappy bird', 'image': 'assets/images/cielo.jpg', 'init': () => const InitFlappyBird()},
+      {'name': 'Flappy bird', 'image': 'assets/images/flappyBird.png', 'init': () => const InitFlappyBird()},
     ];
 
     return Scaffold(

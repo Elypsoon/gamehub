@@ -18,16 +18,31 @@ class FlappyBirdGame extends FlameGame with TapDetector, HasCollisionDetection {
   late TextComponent score;
 
   @override
+  @override
   Future<void> onLoad() async {
     addAll([
       Background()..priority = 0,
       Ground()..priority = 1,
       bird = Bird()..priority = 2,
-      PipeGroup()..priority = 3, // Las tuberías tienen menor prioridad que el texto
       score = buildScore()..priority = 4,
     ]);
 
-    interval.onTick = () => add(PipeGroup());
+    // Configuración del temporizador
+    interval = Timer(
+      Config.pipeInterval,
+      repeat: true,
+      onTick: () => add(PipeGroup()),
+    );
+
+    // Inicia el temporizador con un retraso inicial
+    Future.delayed(const Duration(milliseconds: 100), () => interval.start());
+  }
+
+  @override
+  void update(double dt) {
+    super.update(dt);
+    interval.update(dt); // Asegúrate de que el temporizador se actualice
+    score.text = 'Puntuación: ${bird.score}';
   }
 
   TextComponent buildScore() {
@@ -47,12 +62,5 @@ class FlappyBirdGame extends FlameGame with TapDetector, HasCollisionDetection {
   @override
   void onTap() {
     bird.fly();
-  }
-
-  @override
-  void update(double dt) {
-    super.update(dt);
-    interval.update(dt);
-    score.text = 'Puntuación: ${bird.score}';
   }
 }

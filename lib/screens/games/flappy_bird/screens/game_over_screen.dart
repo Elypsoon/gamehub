@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:game_hub/screens/games/flappy_bird/components/bird.dart';
+import 'package:game_hub/screens/games/flappy_bird/components/ground.dart';
+import 'package:game_hub/screens/games/flappy_bird/components/pipe_group.dart';
 import 'package:game_hub/screens/games/flappy_bird/game/assets.dart';
 import 'package:game_hub/screens/games/flappy_bird/game/flappy_bird_game.dart';
 
@@ -31,7 +34,8 @@ class GameOverScreen extends StatelessWidget {
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.orange),
                 child: const Text(
                   'Reiniciar',
-                  style: TextStyle(fontSize: 20, fontFamily: 'Game', color: Colors.white),
+                  style: TextStyle(
+                      fontSize: 20, fontFamily: 'Game', color: Colors.white),
                 ),
               ),
               //Botón para regresar al menú principal
@@ -43,7 +47,8 @@ class GameOverScreen extends StatelessWidget {
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.orange),
                 child: const Text(
                   'Salir',
-                  style: TextStyle(fontSize: 20, fontFamily: 'Game', color: Colors.white),
+                  style: TextStyle(
+                      fontSize: 20, fontFamily: 'Game', color: Colors.white),
                 ),
               ),
             ],
@@ -52,8 +57,23 @@ class GameOverScreen extends StatelessWidget {
       );
 
   void onRestart() {
-    game.bird.reset();
-    game.overlays.remove('gameOver');
-    game.resumeEngine();
-  }
+  // 1. Limpia todos los elementos activos del juego
+  game.children.where((child) => child is PipeGroup || child is Bird).forEach((movable) {
+    movable.removeFromParent();
+  });
+
+  // 2. Reinicia el pájaro (para restablecer su posición y puntuación)
+  game.bird.reset();
+  game.add(game.bird); // Vuelve a agregar el pájaro al juego
+
+  // 3. Reinicia el temporizador para generar nuevas tuberías
+  game.interval.stop(); // Detén el temporizador
+  game.interval.start(); // Reinícialo con el retraso inicial
+
+  // 4. Reactiva el motor del juego
+  game.overlays.remove('gameOver'); // Elimina la pantalla de Game Over
+  game.resumeEngine();
+
+}
+
 }

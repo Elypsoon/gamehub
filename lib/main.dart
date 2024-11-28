@@ -18,6 +18,7 @@ Future<void> main() async {
   Get.put(HistoryController());
 
   runApp(const MyApp());
+  
 }
 
 class MyApp extends StatelessWidget {

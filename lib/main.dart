@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:game_hub/screens/achievements_screen.dart';
 import 'package:game_hub/screens/controllers/db_manage.dart';
 import 'package:game_hub/screens/controllers/history_controller.dart';
+import 'package:game_hub/screens/games/dino_run/init.dart';
 import 'package:game_hub/screens/history_screen.dart';
 import 'package:get/get.dart';
 
@@ -12,6 +13,7 @@ import 'package:game_hub/screens/home_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await initHive();
   await DBHelper.instance.database;
 
   //Controladores que deben ser inicializados al inicio

@@ -44,6 +44,8 @@ dependencies:
   flame: ^1.21.0
   flame_audio: ^2.10.5
   path: ^1.9.0
+  hive: 2.2.3
+  provider: ^6.1.2
 
 dev_dependencies:
   flutter_test:
@@ -70,6 +72,10 @@ flutter:
     - assets/images/
     - assets/audio/
     - assets/fonts/
+    - assets/images/parallax/
+    - assets/images/AngryPig/
+    - assets/images/Bat/
+    - assets/images/Rino/
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
@@ -94,6 +100,12 @@ flutter:
     - family: Noto Color Emoji
       fonts:
         - asset: assets/fonts/NotoColorEmoji-Regular.ttf
+      
+    - family: Audiowide
+      fonts:
+        - asset: assets/fonts/Audiowide/Audiowide-Regular.ttf
+
+      
   # fonts:
   #   - family: Schyler
   #     fonts:

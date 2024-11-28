@@ -46,6 +46,7 @@ dependencies:
   path: ^1.9.0
   hive: 2.2.3
   provider: ^6.1.2
+  google_fonts: ^6.2.1
 
 dev_dependencies:
   flutter_test:

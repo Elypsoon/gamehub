@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:game_hub/screens/games/dino_run/init_dino.dart';
+import 'package:game_hub/screens/games/dino_run/init.dart';
 import 'package:game_hub/screens/games/flappy_bird/init_flappy_bird.dart';
 import 'package:get/get.dart';
 import 'package:zhi_starry_sky/starry_sky.dart';
@@ -38,7 +38,7 @@ class GamesPage extends StatelessWidget {
                       IconButton(
                         icon: const Icon(Icons.arrow_back, color: Colors.white),
                         onPressed: () {
-                          Get.back();
+                          Get.toNamed('/');
                         },
                       ),
                       const Text(

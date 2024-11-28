@@ -68,7 +68,8 @@ class Bird extends SpriteGroupComponent<BirdMovement>
       );
       FlameAudio.play(Assets.flying);
     } else {
-      debugPrint('Sprites not loaded properly, cannot change to BirdMovement.up');
+      debugPrint(
+          'Sprites not loaded properly, cannot change to BirdMovement.up');
     }
   }
 
@@ -87,18 +88,18 @@ class Bird extends SpriteGroupComponent<BirdMovement>
   }
 
   void gameOver() {
-  FlameAudio.play(Assets.collision);
-  game.isHit = true;
+    FlameAudio.play(Assets.collision);
+    game.isHit = true;
 
-  // Guardar en la base de datos
-  final controller = Get.find<HistoryController>();
-  controller.addGameToHistory(
-    name: 'Flappy Bird',
-    score: score,
-    date: DateTime.now(),
-  );
+    // Guardar en la base de datos
+    final controller = Get.find<HistoryController>();
+    controller.addGameToHistory(
+      name: 'Flappy Bird',
+      score: score,
+      date: DateTime.now(),
+    );
 
-  gameRef.overlays.add('gameOver');
-  gameRef.pauseEngine();
-}
+    gameRef.overlays.add('gameOver');
+    gameRef.pauseEngine();
+  }
 }

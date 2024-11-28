@@ -1,9 +1,11 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:game_hub/screens/games/dino_run/game/dino_run.dart';
 import 'package:game_hub/screens/games/dino_run/widgets/hud.dart';
 import 'package:game_hub/screens/games/dino_run/widgets/settings_menu.dart';
+import 'package:get/get.dart';
 
 // This represents the main menu overlay.
 class MainMenu extends StatelessWidget {
@@ -48,7 +50,7 @@ class MainMenu extends StatelessWidget {
                       game.overlays.add(Hud.id);
                     },
                     child: const Text(
-                      'Play',
+                      'Jugar',
                       style: TextStyle(
                         fontSize: 30,
                       ),
@@ -60,7 +62,24 @@ class MainMenu extends StatelessWidget {
                       game.overlays.add(SettingsMenu.id);
                     },
                     child: const Text(
-                      'Settings',
+                      'Ajustes',
+                      style: TextStyle(
+                        fontSize: 30,
+                      ),
+                    ),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      // Cambia la orientación de la pantalla a vertical antes de salir
+                      SystemChrome.setPreferredOrientations([
+                        DeviceOrientation.portraitUp,
+                        DeviceOrientation.portraitDown,
+                      ]).then((_) {
+                        Get.toNamed('/games');
+                      });
+                    },
+                    child: const Text(
+                      'Salir',
                       style: TextStyle(
                         fontSize: 30,
                       ),

@@ -28,8 +28,8 @@ Future<void> initHive() async {
 }
 
 // The main widget for this game.
-class DinoRunApp extends StatelessWidget {
-  const DinoRunApp({super.key});
+class InitDinoRun extends StatelessWidget {
+  const InitDinoRun({super.key});
 
   @override
   Widget build(BuildContext context) {

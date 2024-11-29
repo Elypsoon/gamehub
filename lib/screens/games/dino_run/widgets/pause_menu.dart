@@ -1,11 +1,14 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:game_hub/screens/games/dino_run/game/audio_manager.dart';
 import 'package:game_hub/screens/games/dino_run/game/dino_run.dart';
 import 'package:game_hub/screens/games/dino_run/models/player_data.dart';
 import 'package:game_hub/screens/games/dino_run/widgets/hud.dart';
 import 'package:game_hub/screens/games/dino_run/widgets/main_menu.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:provider/provider.dart';
 
 
@@ -85,12 +88,14 @@ class PauseMenu extends StatelessWidget {
                     ),
                     ElevatedButton(
                       onPressed: () {
-                        game.overlays.remove(PauseMenu.id);
-                        game.overlays.add(MainMenu.id);
-                        game.resumeEngine();
-                        game.reset();
-                        AudioManager.instance.resumeBgm();
-                      },
+                      // Cambia la orientación de la pantalla a vertical antes de salir
+                      SystemChrome.setPreferredOrientations([
+                        DeviceOrientation.portraitUp,
+                        DeviceOrientation.portraitDown,
+                      ]).then((_) {
+                        Get.offAllNamed('/games');
+                      });
+                    },
                       child: const Text(
                         'Salir',
                         style: TextStyle(

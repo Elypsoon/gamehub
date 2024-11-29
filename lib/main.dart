@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:game_hub/screens/achievements_screen.dart';
 import 'package:game_hub/screens/controllers/db_manage.dart';
 import 'package:game_hub/screens/controllers/history_controller.dart';
-import 'package:game_hub/screens/games/dino_run/init.dart';
+import 'package:game_hub/screens/games/dino_run/init_dino.dart';
 import 'package:game_hub/screens/games/snake/blocs/game_flow_bloc.dart';
 import 'package:game_hub/screens/games/snake/blocs/score_bloc.dart';
 import 'package:game_hub/screens/history_screen.dart';

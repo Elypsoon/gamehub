@@ -33,7 +33,7 @@ class StartGameOverlay extends StatelessWidget {
                     color: Colors.black,
                   ),
                   Text(
-                    "Start Game",
+                    "Iniciar",
                     style: GoogleFonts.getFont(
                       'Chakra Petch',
                       textStyle: const TextStyle(
@@ -48,6 +48,7 @@ class StartGameOverlay extends StatelessWidget {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
+                game.exitGame();
                 Get.toNamed('/games'); // Salir o regresar al menú
               },
               style: ElevatedButton.styleFrom(
@@ -58,7 +59,7 @@ class StartGameOverlay extends StatelessWidget {
                 ),
               ),
               child: Text(
-                "Exit",
+                "Salir",
                 style: GoogleFonts.getFont(
                   'Chakra Petch',
                   textStyle: const TextStyle(

@@ -5,7 +5,6 @@ import 'package:game_hub/screens/games/tetris/game/tetris_game.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
 class PlayAgainOverlay extends StatelessWidget {
   static String keyOverlay = "playAgainOverlay";
 
@@ -34,7 +33,7 @@ class PlayAgainOverlay extends StatelessWidget {
                     color: Colors.black,
                   ),
                   Text(
-                    "Play Again",
+                    "Volver a jugar",
                     style: GoogleFonts.getFont(
                       'Chakra Petch',
                       textStyle: const TextStyle(
@@ -49,7 +48,8 @@ class PlayAgainOverlay extends StatelessWidget {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                Get.toNamed('/games'); // Salir o regresar al menú
+                game.exitGame();
+                Get.offAllNamed('/games'); // Salir o regresar al menú
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.transparent, // Color del botón

@@ -75,7 +75,7 @@ class MainMenu extends StatelessWidget {
                         DeviceOrientation.portraitUp,
                         DeviceOrientation.portraitDown,
                       ]).then((_) {
-                        Get.toNamed('/games');
+                        Get.offAllNamed('/games');
                       });
                     },
                     child: const Text(

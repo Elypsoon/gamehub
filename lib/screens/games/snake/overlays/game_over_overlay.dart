@@ -1,8 +1,5 @@
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
-import 'package:game_hub/screens/games/snake/blocs/game_flow_bloc.dart';
-import 'package:game_hub/screens/games/snake/blocs/score_bloc.dart';
-import 'package:game_hub/screens/games/snake/blocs/snake_bloc.dart';
 import 'package:game_hub/screens/games/snake/snake_game.dart';
 import 'package:get/get.dart';
 

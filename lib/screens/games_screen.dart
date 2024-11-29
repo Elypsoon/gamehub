@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:game_hub/screens/games/dino_run/init.dart';
+import 'package:game_hub/screens/games/dino_run/init_dino.dart';
 import 'package:game_hub/screens/games/flappy_bird/init_flappy_bird.dart';
 import 'package:game_hub/screens/games/snake/init_snake.dart';
 import 'package:game_hub/screens/games/tetris/init_tetris.dart';

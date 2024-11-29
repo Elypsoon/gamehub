@@ -160,6 +160,7 @@ class TetrisGame extends FlameGame with KeyboardEvents, TapCallbacks {
     playland.gameInit();
     AudioManager.instance.selectSound();
     AudioManager.instance.startBgm();
+    AudioManager.instance.turnOnSound();
     initTimer();
   }
 
@@ -206,7 +207,6 @@ class TetrisGame extends FlameGame with KeyboardEvents, TapCallbacks {
   }
 
   void resetGame() {
-    saveScore();
     if (!gameProvider.startGame) {
       return;
     }
@@ -287,5 +287,20 @@ class TetrisGame extends FlameGame with KeyboardEvents, TapCallbacks {
       score: gameProvider.points, // Usa los puntos actuales
       date: DateTime.now(),
     );
+  }
+
+  void exitGame() {
+    // Detener la música si está activa
+    if (gameProvider.playSound) {
+      AudioManager.instance.turnOffSound();
+      AudioManager.instance.stopBgm();
+    }
+    // Limpiar el temporizador
+    resetTimer();
+
+    // Reiniciar el estado del juego
+    gameProvider.reset();
+    gameStates = GameStates.none;
+    playland.reset();
   }
 }

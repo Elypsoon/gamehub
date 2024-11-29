@@ -111,7 +111,7 @@ class ControlGame extends StatelessWidget {
                 Column(
                   children: [
                     Text(
-                      "Reset",
+                      "Reiniciar",
                       style: GoogleFonts.getFont(
                         'Chakra Petch',
                         textStyle: const TextStyle(

@@ -3,6 +3,7 @@ import 'package:game_hub/screens/games/flappy_bird/components/bird.dart';
 import 'package:game_hub/screens/games/flappy_bird/components/pipe_group.dart';
 import 'package:game_hub/screens/games/flappy_bird/game/assets.dart';
 import 'package:game_hub/screens/games/flappy_bird/game/flappy_bird_game.dart';
+import 'package:get/get.dart';
 
 //Pantalla que se muestra cuando el juego termina
 class GameOverScreen extends StatelessWidget {
@@ -41,7 +42,7 @@ class GameOverScreen extends StatelessWidget {
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.of(context).pop();
+                  Get.offAllNamed('/games');
                 },
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.orange),
                 child: const Text(

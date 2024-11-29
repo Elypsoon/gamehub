@@ -12,10 +12,9 @@ class MenuPage extends StatelessWidget {
         children: [
           // Fondo de la pantalla
           const Positioned.fill(
-            child: Center(
-              child: StarrySkyView(),
-            )
-          ),
+              child: Center(
+            child: StarrySkyView(),
+          )),
           // Contenido principal
           Center(
             child: Column(
@@ -25,6 +24,7 @@ class MenuPage extends StatelessWidget {
                 const Text(
                   'GameHub',
                   style: TextStyle(
+                    fontFamily: 'Georgia',
                     fontSize: 48,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
@@ -37,7 +37,8 @@ class MenuPage extends StatelessWidget {
                     ],
                   ),
                 ),
-                const SizedBox(height: 50), // Espaciado entre el título y los botones
+                const SizedBox(
+                    height: 50), // Espaciado entre el título y los botones
                 // Botones del menú
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -45,7 +46,7 @@ class MenuPage extends StatelessWidget {
                     // Botón de Logros
                     _buildMenuButton(
                       icon: Icons.emoji_events,
-                      color: Colors.blueAccent,
+                      color: const Color.fromARGB(255, 25, 122, 10),
                       onPressed: () {
                         Get.toNamed('/achievements');
                       },
@@ -54,7 +55,7 @@ class MenuPage extends StatelessWidget {
                     // Botón de Play (más grande)
                     _buildMenuButton(
                       icon: Icons.play_arrow,
-                      color: Colors.green,
+                      color: const Color.fromARGB(255, 161, 0, 175),
                       isLarge: true,
                       onPressed: () {
                         Get.toNamed('/games');
@@ -64,7 +65,7 @@ class MenuPage extends StatelessWidget {
                     // Botón de Historial
                     _buildMenuButton(
                       icon: Icons.history,
-                      color: Colors.orange,
+                      color: const Color.fromARGB(255, 43, 1, 231),
                       onPressed: () {
                         Get.toNamed('/history');
                       },

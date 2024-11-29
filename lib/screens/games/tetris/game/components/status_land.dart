@@ -26,7 +26,7 @@ class StatusLand extends PositionComponent with HasGameRef<TetrisGame> {
 
     add(
       TextComponent(
-        text: 'Next',
+        text: 'Siguiente',
         textRenderer: textPaint,
         position: Vector2(10, 5),
       ),

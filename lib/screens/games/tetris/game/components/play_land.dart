@@ -1,5 +1,6 @@
 import 'package:flame/components.dart';
 import 'package:flame/extensions.dart';
+import 'package:game_hub/screens/controllers/history_controller.dart';
 import 'package:game_hub/screens/games/tetris/core/enums/game_state.dart';
 import 'package:game_hub/screens/games/tetris/core/utils/constants.dart';
 import 'package:game_hub/screens/games/tetris/game/components/block.dart';
@@ -7,7 +8,7 @@ import 'package:game_hub/screens/games/tetris/game/components/briks.dart';
 import 'package:game_hub/screens/games/tetris/game/manager/audio_manager.dart';
 import 'package:game_hub/screens/games/tetris/game/overlays/play_again_overlay.dart';
 import 'package:game_hub/screens/games/tetris/game/tetris_game.dart';
-
+import 'package:get/get.dart';
 
 class Playland extends PositionComponent
     with HasGameRef<TetrisGame>, KeyboardHandler {
@@ -171,6 +172,10 @@ class Playland extends PositionComponent
       Future.delayed(const Duration(milliseconds: 300), () {
         AudioManager.instance.explosionSound();
       });
+
+      // Guardar puntuación
+      saveScore();
+
       await Future.delayed(const Duration(milliseconds: 1000), () {
         reset();
         Future.delayed(const Duration(milliseconds: 2600), () {
@@ -280,4 +285,13 @@ class Playland extends PositionComponent
       }
     }
   }
+  void saveScore() {
+    final controller = Get.find<HistoryController>();
+    controller.addGameToHistory(
+      name: 'Tetris',
+      score: game.gameProvider.points, // Usa los puntos actuales
+      date: DateTime.now(),
+    );
+}
+
 }

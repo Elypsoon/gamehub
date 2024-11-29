@@ -6,9 +6,7 @@ import 'package:game_hub/screens/games/dino_run/game/audio_manager.dart';
 import 'package:game_hub/screens/games/dino_run/game/dino_run.dart';
 import 'package:game_hub/screens/games/dino_run/models/player_data.dart';
 import 'package:game_hub/screens/games/dino_run/widgets/hud.dart';
-import 'package:game_hub/screens/games/dino_run/widgets/main_menu.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:provider/provider.dart';
 
 

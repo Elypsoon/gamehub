@@ -280,15 +280,6 @@ class TetrisGame extends FlameGame with KeyboardEvents, TapCallbacks {
     playland.drop();
   }
 
-  void saveScore() {
-    final controller = Get.find<HistoryController>();
-    controller.addGameToHistory(
-      name: 'Tetris',
-      score: gameProvider.points, // Usa los puntos actuales
-      date: DateTime.now(),
-    );
-  }
-
   void exitGame() {
     // Detener la música si está activa
     if (gameProvider.playSound) {

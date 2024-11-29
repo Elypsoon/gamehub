@@ -107,6 +107,8 @@ class HistoryPage extends StatelessWidget {
                                       'Todos los juegos',
                                       'Flappy Bird',
                                       'Dino Run',
+                                      'Tetris',
+                                      'Snake',
                                     ].map((String value) {
                                       return DropdownMenuItem<String>(
                                         value: value,

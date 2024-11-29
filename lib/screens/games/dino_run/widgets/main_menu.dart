@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:game_hub/screens/games/dino_run/game/audio_manager.dart';
 import 'package:game_hub/screens/games/dino_run/game/dino_run.dart';
 import 'package:game_hub/screens/games/dino_run/widgets/hud.dart';
 import 'package:game_hub/screens/games/dino_run/widgets/settings_menu.dart';
@@ -70,6 +71,7 @@ class MainMenu extends StatelessWidget {
                   ),
                   ElevatedButton(
                     onPressed: () {
+                      AudioManager.instance.stopBgm();
                       // Cambia la orientación de la pantalla a vertical antes de salir
                       SystemChrome.setPreferredOrientations([
                         DeviceOrientation.portraitUp,

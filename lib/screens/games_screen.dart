@@ -14,9 +14,9 @@ class GamesPage extends StatelessWidget {
     // Lista de juegos
     final games = [
       {'name': 'Flappy Bird', 'image': 'assets/images/flappyBird.png', 'init': () => const InitFlappyBird()},
-      {'name': 'Dino Run', 'image': 'assets/images/cielo.jpg', 'init': () => const InitDinoRun()},
-      {'name': 'Tetris', 'image': 'assets/images/cielo.jpg', 'init': () => const InitTetris()},
-      {'name': 'Snake', 'image': 'assets/images/cielo.jpg', 'init': () => InitSnake()},
+      {'name': 'Dino Run', 'image': 'assets/images/dino-run.jpg', 'init': () => const InitDinoRun()},
+      {'name': 'Tetris', 'image': 'assets/images/tetris.png', 'init': () => const InitTetris()},
+      {'name': 'Snake', 'image': 'assets/images/snake.png', 'init': () => InitSnake()},
     ];
 
     return Scaffold(

@@ -86,6 +86,7 @@ class PauseMenu extends StatelessWidget {
                     ),
                     ElevatedButton(
                       onPressed: () {
+                      AudioManager.instance.stopBgm();
                       // Cambia la orientación de la pantalla a vertical antes de salir
                       SystemChrome.setPreferredOrientations([
                         DeviceOrientation.portraitUp,
